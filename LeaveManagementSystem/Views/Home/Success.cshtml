@@ -1,0 +1,11 @@
+﻿
+@{
+    ViewBag.Title = "Success";
+}
+
+<h2 class="text-success">Success!</h2>
+<p>You have successfully applied for @TempData["requestedLeaveDays"] leave day/s</p>
+<br />
+<p>We have created a google calendar event for your administrator to review your request. <br /> You can keep track of the status @Html.ActionLink("here", "ViewMyRequests", "LeaveManagement",new {id = (int)Session["userId"] },"")</p>
+
+

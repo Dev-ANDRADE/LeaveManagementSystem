@@ -1,0 +1,82 @@
+﻿@model IEnumerable<LeaveManagementSystem.Models.LeaveRequest>
+
+    @{
+        ViewBag.Title = "List";
+    }
+
+    <h2 style="margin: 1em 0em 1.5em 0; color:#282828;">All leave requests</h2>
+
+    @if (TempData["count"].ToString() != "0")
+    {
+        
+       
+
+        <div class="table-responsive">
+
+
+            <table id="drivers" class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+
+                        <th>First name</th>
+                        <th>Lastname</th>
+                        <th>Start date</th>
+                        <th>End date</th>
+                        <th>Leave type</th>
+                        <th>Reason</th>
+                        <th>Total days</th>
+                        <th>Remaining leave days</th>
+                        <th>Request status</th>
+                        <th>Grant leave</th>
+                        <th>Deny leave</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+
+                        <tr>
+
+                            <td>@item.FirstName</td>
+                            <td>@item.LastName</td>
+                            <td>@item.StartDate</td>
+                            <td>@item.EndDate</td>
+                            <td>@item.LeaveType</td>
+                            <td>@item.Reason</td>
+                            <td>@item.TotalDays</td>
+                            <td>@item.RemainingLeaveDays</td>
+                            <td>@item.RequestStatus</td>
+
+                            <td>
+
+
+                                @Html.ActionLink("Grant","","",new {@class="btn btn-info"})
+                                
+                               
+
+                            </td>
+
+                            <td>
+
+
+                                @Html.ActionLink("Deny", "", "", new { @class = "btn btn-danger" })
+
+                            </td>
+
+
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+
+        </div>
+    }
+    else
+    {
+        <h2 class="text-success">There are no current requests for leave.</h2>
+        @Html.ActionLink("Apply here", "Create", "LeaveManagement","",new {@class="btn btn-primary"})
+    }
+
